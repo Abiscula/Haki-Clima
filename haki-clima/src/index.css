@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #100E1D;
+    color: #fefefe;
+}
+
+
+.container-area {
+    display: flex;
+}
+
+
+.center-area {
+    width: 981px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.left-area {
+    width: 459px;
+    height: 1023px;
+    background-color: #1E213A;
+    display: flex;
+    flex-direction: column;
+}
+
+/* SearchCity */
+
+label:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 22px;
+    background: url("./components/styles/icons/Search.svg") center / contain no-repeat;
+}
+
+.buttonClose {
+    position: absolute;
+    left: 88%;
+    top: -120%;
+    cursor: pointer;
+    
+}
+
+/* LocationDefault */
+.gps {
+    height: 22px;
+    width: 22px;
+    left: 1px;
+    top: 1px;
+    position: absolute;
+    left: 22.50%;
+    right: 22.50%;
+    top: 22.50%;
+    bottom: 22.50%;
+}
+
+.location {
+    fill: #88869D;
+    height: 20px;
+    width: 20px;
+    left: 5px;
+    top: 2px;
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: -5%;
+    bottom: -5%;
+}
+
+
+
+@media (max-width: 375px) {
+    .left-area {
+        position: absolute;
+        width: 375px;
+        height: 810px;
+        left: 0px;
+        top: 0px;
+    }
+
+    .center-area {
+        position: absolute;
+        width: 375px;
+        height: 710px;
+        top: 810px;
+    }
+
+    .buttonClose {
+        left: 60%;
+        top: -185%;
+    }
+}
