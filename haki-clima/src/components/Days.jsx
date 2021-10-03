@@ -2,10 +2,12 @@ import React from 'react'
 import * as s from './styles/styled-Days'
 import dateFormat, { formatedData } from  '../utils/dateFormat'
 import tempConvert from '../utils/tempConvert'
+import { useClimate } from '../Providers/p-climate'
 
-export default function Days({weather, temp}) {
-    console.log(temp)
+export default function Days() {
+    const { temp, weather } = useClimate()
     const dias = weather.consolidated_weather
+
     return(
         <s.DaysArea>
             {dias?.map((atribute, key) => {

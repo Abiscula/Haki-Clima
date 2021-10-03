@@ -1,8 +1,11 @@
 import React from 'react'
 import * as s from './styles/styled-TodayHighlights'
 import {ReactComponent as Compass} from './styles/icons/Compass.svg';
+import { useClimate } from '../Providers/p-climate';
 
-export default function TodayHighlights({weather}) {
+export default function TodayHighlights() {
+
+    const { weather } = useClimate()
 
     const values = {
         humidity: weather&&weather.consolidated_weather[0].humidity,

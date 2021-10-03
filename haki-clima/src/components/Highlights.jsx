@@ -1,8 +1,12 @@
 import React, { Fragment } from 'react'
 import TodayHighlights from './TodayHighlights'
 import * as s from './styles/styled-Highlights'
+import { useClimate } from '../Providers/p-climate'
 
-export default function Highlights({weather, updateTemp}) {
+export default function Highlights() {
+
+    const { updateTemp, weather } = useClimate()
+
     return(
         <Fragment>
             <s.Celsius onClick={() => updateTemp(false)}>

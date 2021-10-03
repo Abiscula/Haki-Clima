@@ -4,13 +4,13 @@ import LocationDefault from './components/LocationDefault';
 import Days from './components/Days';
 import Highlights from './components/Highlights'
 import axios from 'axios' 
+import { useScreen } from './Providers/p-screen';
+import { useClimate } from './Providers/p-climate';
 
 function App() {
-  const [screen, setScreen] = useState(true)
-  const [location, setLocation] = useState(false)
-  const [weather, setWeather] = useState(false)
-  const [current, setCurrent] = useState({})
-  const [temp, updateTemp] = useState(false)
+  const { screen } = useScreen()
+  const { setCurrent, setWeather } = useClimate()
+  const [location, setLocation] = useState(false) //estado que valida se o usuario habilitou a localização
 
   let getWeather = async (lat, long) => {
       let res = await axios.get(`https://api.allorigins.win/raw?url=https://www.metaweather.com/api/location/search/?lattlong=${lat},${long}`)
@@ -39,20 +39,15 @@ function App() {
       <section className="container-area">
         
         <div className="left-area">
-          {screen ? <LocationDefault 
-                      weather={weather} 
-                      setScreen={setScreen}
-                      getWeather={getWeather} 
-                      current={current}
-                      temp={temp}
-                    /> 
-                  : <SearchCity setScreen={setScreen} setWeather={setWeather} 
-          />}
+          {screen 
+                  ? <LocationDefault getWeather={getWeather}/> 
+                  : <SearchCity/> 
+          }
         </div>
   
         <div className="center-area">
-          <Days weather={weather} temp={temp}/>
-          <Highlights weather={weather} updateTemp={updateTemp}/>
+          <Days/>
+          <Highlights/>
         </div>
         
       </section>

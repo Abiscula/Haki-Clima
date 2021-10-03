@@ -3,17 +3,20 @@ import * as s from './styles/styled-LocationDefault'
 import dateFormat, { formatedData } from  '../utils/dateFormat'
 import {ReactComponent as Location} from './styles/icons/Location.svg';
 import {ReactComponent as Gps} from './styles/icons/Gps.svg';
-import '../index.css'
 import tempConvert from '../utils/tempConvert';
+import { useScreen } from '../Providers/p-screen';
+import { useClimate } from '../Providers/p-climate';
 
 
-export default function LocationDefault({weather, setScreen, getWeather, current, temp}) {
+export default function LocationDefault({getWeather}) {
+
+    const { setScreen } = useScreen()
+    const { current, temp, weather } = useClimate()
+
     const imgURL = weather&&weather.consolidated_weather[0].weather_state_abbr
-
     const Climate = Math.round(weather&&weather.consolidated_weather[0].the_temp)
     const ClimateF = (temp ? tempConvert(Climate) : Climate)
     let unit = (temp ? 'ºF' : 'ºC')
-
     let date = formatedData(weather&&weather.consolidated_weather[0].applicable_date)
 
     const {lat, long} = current
